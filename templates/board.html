@@ -3,9 +3,31 @@
 {% block title %}Boggle!{% endblock %}
 
 {% block content %}
-    {{board}}
-    <form action="/" id="boggle-form">
-        <label for="guess">Guess a word:</label>
-        <input type="text" name="guess">
+
+    <div class="timer">Timer: <span id="secs"></span></div>
+
+    <div>HIGH SCORE: <span> {{ session['highscore'] }}</span></div>
+
+    <table class="board">
+        <tbody>
+            {% for row in board %}
+            <tr>
+                {% for cell in row %}
+                <td>{{cell}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <form method="POST" class="guess-word">
+        <input type="text" name="word">
     </form>
+
+    <div id="results"></div>
+
+
+    <p>CURRENT SCORE: <span class="score"></span></p>
+
+    <ul class="used-words"></ul>
 {% endblock %}
